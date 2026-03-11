@@ -1,0 +1,9 @@
+.DS_Store
+*.swp
+*.py[cod]
+__pycache__/
+*.class
+*~
+.coverage
+/notes
+.vscode 
