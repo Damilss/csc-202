@@ -22,6 +22,32 @@ class Tests(unittest.TestCase):
 
         self.check_valid_tsort(edges, tsort(edges))
 
+    def test_chain(self) -> None: 
+        edges = [["a", "b"], ["b", "c"], ["c", "d"]]
+
+        self.check_valid_tsort(edges, tsort(edges))
+
+    def test_branching(self) -> None:
+        edges = [["a", "c"], ["b", "c"]]
+
+        self.check_valid_tsort(edges, tsort(edges))
+        
+    def test_multiple_dependencies(self) -> None:
+        edges = [["a", "d"], ["b", "d"], ["c", "d"]]
+
+        self.check_valid_tsort(edges, tsort(edges))
+
+    def test_disconnected(self) -> None:
+        edges = [["a", "b"], ["c", "d"]]
+
+        self.check_valid_tsort(edges, tsort(edges))
+
+    def test_cycle(self) -> None:
+        edges = [["a", "b"], ["b", "c"], ["c", "a"]]
+
+        with self.assertRaises(ValueError):
+            tsort(edges)
+
 
 if __name__ == "__main__":
     unittest.main()
